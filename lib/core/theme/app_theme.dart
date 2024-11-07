@@ -5,4 +5,7 @@ class AppTheme {
   static final darkThemeMode = ThemeData.dark().copyWith(
     scaffoldBackgroundColor: ColorConstants.backgroundColor,
   );
+  static final lightThemeMode = ThemeData.dark().copyWith(
+    scaffoldBackgroundColor: ColorConstants.whiteColor,
+  );
 }

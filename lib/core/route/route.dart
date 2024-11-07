@@ -36,12 +36,5 @@ final GoRouter router = GoRouter(
         return const HomeScreen();
       },
     ),
-    // GoRoute(
-    //   path: '/screenFour',
-    //   name: RouteConstants.screenFour,
-    //   builder: (BuildContext context, GoRouterState state) {
-    //     return const ScreenFour();
-    //   },
-    // ),
   ],
 );
