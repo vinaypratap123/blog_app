@@ -35,20 +35,14 @@ String? customPasswordValidator(String? value) {
   return null;
 }
 
-///.... username validator
-String? customUsernameValidator(String? value) {
+///.... fullname validator
+String? customFullnameValidator(String? value) {
   if (value == null || value.isEmpty) {
-    return 'Please enter a username';
+    return 'Please enter a name';
   }
   if (value.length < 3) {
-    return 'Username must be at least 3 characters';
+    return 'Name must be at least 3 characters';
   }
-  if (value.contains(' ')) {
-    return 'Username cannot contain spaces';
-  }
-  final RegExp usernameRegex = RegExp(r'^[a-zA-Z0-9_]+$');
-  if (!usernameRegex.hasMatch(value)) {
-    return 'Username can only contain letters, numbers, and underscores';
-  }
+
   return null;
 }

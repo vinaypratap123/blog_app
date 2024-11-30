@@ -60,3 +60,6 @@ web/build/
 # Generated files
 *.log
 pubspec.lock
+
+#superbase
+secrets/

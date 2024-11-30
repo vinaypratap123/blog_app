@@ -1,8 +1,8 @@
 import 'package:blog_app/core/constants/string_constants.dart';
+import 'package:blog_app/core/theme/color_constants.dart';
 import 'package:blog_app/core/utils/validators.dart';
 import 'package:blog_app/core/widgets/buttons/custom_button.dart';
 import 'package:blog_app/core/widgets/text_fields/custom_text_field.dart';
-
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -33,9 +33,9 @@ class _LoginScreenState extends State<LoginScreen> {
   ///.... release the resources
   @override
   void dispose() {
-    super.dispose();
     _emailController.dispose();
     _passwordController.dispose();
+    super.dispose();
   }
 
   @override
@@ -50,6 +50,14 @@ class _LoginScreenState extends State<LoginScreen> {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
+                Text(
+                  StringConstants.login,
+                  style: Theme.of(context).textTheme.displayLarge,
+                ),
+                const SizedBox(
+                  height: 15,
+                ),
+
                 ///.... Email text field
                 CustomTextField(
                   controller: _emailController,
@@ -57,7 +65,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   validator: customEmailValidator,
                 ),
                 const SizedBox(
-                  height: 10,
+                  height: 15,
                 ),
 
                 ///.... Password text field
@@ -90,12 +98,21 @@ class _LoginScreenState extends State<LoginScreen> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    const Text(StringConstants.doNotHaveAccount),
+                    Text(
+                      StringConstants.doNotHaveAccount,
+                      style: Theme.of(context).textTheme.titleSmall,
+                    ),
                     InkWell(
                       onTap: () {
                         context.go('/signupScreen');
                       },
-                      child: const Text(StringConstants.signup),
+                      child: Text(
+                        StringConstants.signup,
+                        style: Theme.of(context)
+                            .textTheme
+                            .titleSmall!
+                            .copyWith(color: ColorConstants.blueColor),
+                      ),
                     ),
                   ],
                 )

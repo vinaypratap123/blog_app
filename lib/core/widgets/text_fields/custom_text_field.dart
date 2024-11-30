@@ -33,14 +33,10 @@ class _CustomTextFieldState extends State<CustomTextField> {
       obscureText: widget.isPasswordField ? _isObscured : false,
       decoration: InputDecoration(
         hintText: widget.hintText,
-        border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(8.0),
-        ),
         suffixIcon: widget.isPasswordField
             ? IconButton(
                 icon: Icon(
                   _isObscured ? Icons.visibility_off : Icons.visibility,
-                  color: Colors.grey,
                 ),
                 onPressed: () {
                   setState(() {

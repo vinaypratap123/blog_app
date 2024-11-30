@@ -1,3 +1,4 @@
+import 'package:blog_app/core/theme/color_constants.dart';
 import 'package:flutter/material.dart';
 
 class CustomButton extends StatelessWidget {
@@ -12,12 +13,17 @@ class CustomButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
+    return Container(
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(12),
+        color: ColorConstants.primaryColor,
+      ),
       width: MediaQuery.of(context).size.width,
       child: ElevatedButton(
         onPressed: onPressed,
         style: ElevatedButton.styleFrom(
-          backgroundColor: Colors.blue,
+          backgroundColor: ColorConstants.transparentColor,
+          shadowColor: ColorConstants.transparentColor,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(12),
           ),
@@ -29,10 +35,7 @@ class CustomButton extends StatelessWidget {
         ),
         child: Text(
           btnName,
-          style: const TextStyle(
-            fontSize: 18,
-            fontWeight: FontWeight.bold,
-          ),
+          style: Theme.of(context).textTheme.titleMedium,
         ),
       ),
     );
