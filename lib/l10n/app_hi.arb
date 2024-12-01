@@ -1,0 +1,22 @@
+{
+  "@@locale": "hi",
+  "select_language": "भाषा चुनें",
+  "english": "अंग्रेज़ी",
+  "hindi": "हिंदी",
+  "login": "लॉगिन",
+  "sign_up": "साइनअप",
+  "blog_app": "ब्लॉग ऐप",
+  "email": "ईमेल",
+  "password": "पासवर्ड",
+  "full_name": "पूरा नाम",
+  "post": "पोस्ट",
+  "already_have_account": "क्या आपके पास खाता है? ",
+  "do_not_have_account": "क्या आपके पास खाता नहीं है? ",
+  "oops_something_went_wrong": "कुछ गलत हो गया!",
+  "select_theme": "थीम चुनें",
+  "light_theme": "लाइट थीम",
+  "dark_theme": "डार्क थीम",
+  "are_you_sure_you_want_to_logout": "क्या आप वाकई लॉगआउट करना चाहते हैं?",
+  "cancel": "रद्द करें",
+  "logout": "लॉगआउट"
+}

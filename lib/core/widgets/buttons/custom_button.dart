@@ -1,42 +1,50 @@
-import 'package:blog_app/core/theme/color_constants.dart';
 import 'package:flutter/material.dart';
 
 class CustomButton extends StatelessWidget {
   final String btnName;
+  final double height;
+  final double? width;
+  final bool isOutlined;
+  final bool isFilled;
   final VoidCallback onPressed;
 
   const CustomButton({
     super.key,
     required this.btnName,
+    this.width,
+    this.height = 60.0,
+    this.isFilled = true,
+    this.isOutlined = false,
     required this.onPressed,
   });
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(12),
-        color: ColorConstants.primaryColor,
+    final buttonWidth = width ?? MediaQuery.of(context).size.width;
+
+    return ElevatedButton(
+      onPressed: onPressed,
+      style: ElevatedButton.styleFrom(
+        fixedSize: Size(buttonWidth, height),
+        elevation: isOutlined ? 0 : 4,
+        backgroundColor: isOutlined
+            ? Colors.transparent
+            : Theme.of(context).colorScheme.primary,
+        foregroundColor: isOutlined
+            ? Theme.of(context).colorScheme.primary
+            : Theme.of(context).colorScheme.onPrimary,
+        side: isOutlined
+            ? BorderSide(
+                color: Theme.of(context).colorScheme.primary,
+                width: 2.0,
+              )
+            : null,
       ),
-      width: MediaQuery.of(context).size.width,
-      child: ElevatedButton(
-        onPressed: onPressed,
-        style: ElevatedButton.styleFrom(
-          backgroundColor: ColorConstants.transparentColor,
-          shadowColor: ColorConstants.transparentColor,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(12),
-          ),
-          padding: const EdgeInsets.symmetric(
-            vertical: 16,
-            horizontal: 32,
-          ),
-          elevation: 5,
-        ),
-        child: Text(
-          btnName,
-          style: Theme.of(context).textTheme.titleMedium,
-        ),
+      child: Text(
+        btnName,
+        style: width == null
+            ? Theme.of(context).textTheme.titleMedium
+            : Theme.of(context).textTheme.bodySmall,
       ),
     );
   }

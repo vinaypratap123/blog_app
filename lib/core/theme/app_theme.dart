@@ -2,7 +2,7 @@ import 'package:blog_app/core/theme/color_constants.dart';
 import 'package:flutter/material.dart';
 
 class AppTheme {
-  ///  input border
+  ///  input border theme
   static _border([Color color = ColorConstants.borderColor]) {
     return OutlineInputBorder(
       borderSide: BorderSide(
@@ -29,9 +29,15 @@ class AppTheme {
       ),
     ),
 
-    ///cursorColor
+    ///cursor Color theme
     textSelectionTheme: const TextSelectionThemeData(
       cursorColor: ColorConstants.greyColor,
+    ),
+
+    ///divider theme
+    dividerTheme: const DividerThemeData(
+      color: ColorConstants.greyColor,
+      thickness: 2.0,
     ),
 
     ///input decoration theme
@@ -53,6 +59,39 @@ class AppTheme {
         color: ColorConstants.errorColor,
         fontSize: 14.0,
         fontWeight: FontWeight.bold,
+      ),
+    ),
+
+    ///bottom sheet theme
+    bottomSheetTheme: const BottomSheetThemeData(
+      backgroundColor: ColorConstants.blackColor,
+      showDragHandle: true,
+      dragHandleColor: ColorConstants.greyColor,
+      dragHandleSize: Size(60, 3),
+      elevation: 6,
+      modalElevation: 8,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+      ),
+    ),
+
+    ///color scheme theme
+    colorScheme: const ColorScheme.dark(
+      primary: ColorConstants.primaryColor,
+      surface: ColorConstants.blackColor,
+      onSurface: ColorConstants.whiteColor,
+    ),
+
+    ///elevated button theme
+    elevatedButtonTheme: ElevatedButtonThemeData(
+      style: ElevatedButton.styleFrom(
+        disabledBackgroundColor: ColorConstants.primaryColor.withOpacity(0.3),
+        backgroundColor: ColorConstants.primaryColor,
+        shadowColor: ColorConstants.transparentColor,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(100),
+        ),
+        elevation: 4,
       ),
     ),
 
@@ -137,7 +176,7 @@ class AppTheme {
       ),
     ),
 
-    ///cursorColor
+    ///cursor Color theme
     textSelectionTheme: const TextSelectionThemeData(
       cursorColor: ColorConstants.greyColor,
     ),
@@ -161,6 +200,50 @@ class AppTheme {
         color: ColorConstants.errorColor,
         fontSize: 14.0,
         fontWeight: FontWeight.bold,
+      ),
+    ),
+
+    ///bottom sheet theme
+    bottomSheetTheme: const BottomSheetThemeData(
+      backgroundColor: ColorConstants.whiteColor,
+      showDragHandle: true,
+      dragHandleColor: ColorConstants.greyColor,
+      dragHandleSize: Size(60, 3),
+      elevation: 6,
+      modalElevation: 8,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+      ),
+    ),
+
+    ///color scheme theme
+    colorScheme: const ColorScheme.dark(
+      primary: ColorConstants.primaryColor,
+      surface: ColorConstants.whiteColor,
+      onSurface: ColorConstants.blackColor,
+    ),
+
+    iconTheme: const IconThemeData(
+      color: ColorConstants.blackColor,
+      size: 24.0,
+    ),
+
+    ///divider theme
+    dividerTheme: const DividerThemeData(
+      color: ColorConstants.greyColor,
+      thickness: 2.0,
+    ),
+
+    ///elevated button theme
+    elevatedButtonTheme: ElevatedButtonThemeData(
+      style: ElevatedButton.styleFrom(
+        disabledBackgroundColor: ColorConstants.primaryColor.withOpacity(0.3),
+        backgroundColor: ColorConstants.primaryColor,
+        shadowColor: ColorConstants.transparentColor,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(100),
+        ),
+        elevation: 4,
       ),
     ),
 

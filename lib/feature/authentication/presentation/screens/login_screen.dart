@@ -1,10 +1,15 @@
-import 'package:blog_app/core/constants/string_constants.dart';
 import 'package:blog_app/core/theme/color_constants.dart';
+import 'package:blog_app/core/theme/theme_selection_bottom_sheet.dart';
 import 'package:blog_app/core/utils/validators.dart';
 import 'package:blog_app/core/widgets/buttons/custom_button.dart';
+import 'package:blog_app/core/widgets/common/custom_bottom_sheet.dart';
+import 'package:blog_app/core/widgets/common/custom_sizedbox.dart';
 import 'package:blog_app/core/widgets/text_fields/custom_text_field.dart';
+import 'package:blog_app/feature/profile/widgets/logout_bottom_sheet.dart';
+import 'package:blog_app/l10n/widgets/language_selection_bottom_sheet.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -20,6 +25,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
   ///.... _formKey
   late GlobalKey<FormState> _formKey;
+  //late NetworkInfo networkInfo;
 
   ///.... initialization of Controllers and _formKey
   @override
@@ -28,6 +34,7 @@ class _LoginScreenState extends State<LoginScreen> {
     _emailController = TextEditingController();
     _passwordController = TextEditingController();
     _formKey = GlobalKey<FormState>();
+    //networkInfo = NetworkInfoImpl();
   }
 
   ///.... release the resources
@@ -41,6 +48,58 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        actions: [
+          ///check for internet  button
+          IconButton(
+            onPressed: () async {
+              //if(await networkInfo.isConnected)
+            },
+            icon: const Icon(
+              Icons.person,
+            ),
+          ),
+
+          ///theme change icon button
+          IconButton(
+            onPressed: () {
+              showCustomBottomSheet(
+                context,
+                const ThemeSelectionBottomSheet(),
+              );
+            },
+            icon: const Icon(
+              Icons.dark_mode,
+            ),
+          ),
+
+          ///language change icon button
+          IconButton(
+            onPressed: () {
+              showCustomBottomSheet(
+                context,
+                const LanguageSelectionBottomSheet(),
+              );
+            },
+            icon: const Icon(
+              Icons.language,
+            ),
+          ),
+
+          ///logout icon button
+          IconButton(
+            onPressed: () {
+              showCustomBottomSheet(
+                context,
+                const LogoutConfirmationBottomSheet(),
+              );
+            },
+            icon: const Icon(
+              Icons.logout,
+            ),
+          ),
+        ],
+      ),
       body: Center(
         child: Padding(
           padding: const EdgeInsets.all(10.0),
@@ -51,37 +110,37 @@ class _LoginScreenState extends State<LoginScreen> {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Text(
-                  StringConstants.login,
+                  AppLocalizations.of(context)!.login,
                   style: Theme.of(context).textTheme.displayLarge,
                 ),
-                const SizedBox(
+                const CustomSizedBox(
                   height: 15,
                 ),
 
                 ///.... Email text field
                 CustomTextField(
                   controller: _emailController,
-                  hintText: StringConstants.email,
+                  hintText: AppLocalizations.of(context)!.email,
                   validator: customEmailValidator,
                 ),
-                const SizedBox(
+                const CustomSizedBox(
                   height: 15,
                 ),
 
                 ///.... Password text field
                 CustomTextField(
                   controller: _passwordController,
-                  hintText: StringConstants.password,
+                  hintText: AppLocalizations.of(context)!.password,
                   isPasswordField: true,
                   validator: customPasswordValidator,
                 ),
-                const SizedBox(
+                const CustomSizedBox(
                   height: 30,
                 ),
 
                 ///.... login button
                 CustomButton(
-                  btnName: StringConstants.login,
+                  btnName: AppLocalizations.of(context)!.login,
                   onPressed: () {
                     if (_formKey.currentState?.validate() ?? false) {
                       debugPrint('login Form is valid');
@@ -91,7 +150,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   },
                 ),
 
-                const SizedBox(
+                const CustomSizedBox(
                   height: 30,
                 ),
                 Row(
@@ -99,7 +158,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Text(
-                      StringConstants.doNotHaveAccount,
+                      AppLocalizations.of(context)!.do_not_have_account,
                       style: Theme.of(context).textTheme.titleSmall,
                     ),
                     InkWell(
@@ -107,7 +166,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         context.go('/signupScreen');
                       },
                       child: Text(
-                        StringConstants.signup,
+                        AppLocalizations.of(context)!.sign_up,
                         style: Theme.of(context)
                             .textTheme
                             .titleSmall!

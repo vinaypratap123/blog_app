@@ -1,23 +1,14 @@
 import 'package:shared_preferences/shared_preferences.dart';
 
 class SharedPreferencesHandler {
-  static SharedPreferences? _prefs;
-  static final SharedPreferencesHandler _instance =
-      SharedPreferencesHandler._internal();
-
-  factory SharedPreferencesHandler() {
-    return _instance;
-  }
-
-  SharedPreferencesHandler._internal();
+  static late SharedPreferences? _prefs;
 
   /// Initialize SharedPreferences instance
-  Future<void> init() async {
-    _prefs ??= await SharedPreferences.getInstance();
-  }
+  static Future init() async => _prefs = await SharedPreferences.getInstance();
 
   ///keys
   static const String _themeKey = "selected_theme";
+  static const String _languageKey = "selected_language";
 
   ///.......save app theme pref
   // set theme
@@ -35,7 +26,18 @@ class SharedPreferencesHandler {
     await _prefs?.remove(_themeKey);
   }
 
-  // Clear all data from SharedPreferences
+  ///......save app language
+  ///set
+  static Future setLanguage(String language) async =>
+      await _prefs?.setString(_languageKey, language);
+
+  ///get
+  static String? getLanguage() => _prefs?.getString(_languageKey);
+
+  ///remove
+  static Future removeLanguage() async => await _prefs?.remove(_languageKey);
+
+  /// Clear all data from SharedPreferences
   Future<void> clear() async {
     await _prefs?.clear();
   }

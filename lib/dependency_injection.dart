@@ -11,27 +11,31 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 
 final sl = GetIt.instance;
 Future<void> init() async {
-  // _initAuth();
-
   ///.... initialization superbase
   final supabase = await Supabase.initialize(
     url: SuperbaseSecrets.superbaseUrlKey,
     anonKey: SuperbaseSecrets.superbaseAnonKey,
   );
+
+  ///....superbase
   sl.registerLazySingleton(() => supabase.client);
 
   ///.... theme cubit
   sl.registerSingleton<ThemeCubit>(ThemeCubit());
-}
 
-///.... auth di
-void _initAuth() {
-  // sl.registerFactory<AuthRemoteDataSource>(
-  //   () => AuthRemoteDataSourceImpl(sl()),
-  // );
-  // sl.registerFactory<AuthRepository>(
-  //   () => AuthRepositoryImpl(sl()),
-  // );
+  ///... data sources
+  sl.registerFactory<AuthRemoteDataSource>(
+    () => AuthRemoteDataSourceImpl(sl()),
+  );
+
+  ///....repositories
+  sl.registerFactory<AuthRepository>(
+    () => AuthRepositoryImpl(sl()),
+  );
+
+  ///....usercases
   sl.registerFactory(() => UserSignUpUsecase(sl()));
+
+  ///....bloc
   sl.registerLazySingleton(() => AuthBloc(userSignUpUsecase: sl()));
 }

@@ -8,20 +8,30 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  flutter_localizations:
+    sdk: flutter
   cupertino_icons: ^1.0.8
   #.... for routing
   go_router: ^14.3.0
-  fpdart: ^1.1.1
+  #superbase
   supabase_flutter: ^2.8.0
-  flutter_bloc: ^8.1.6
+  # for di
   get_it: ^8.0.2
+  # for local storage
   shared_preferences: ^2.3.3
+  #to check the internet connection
+  internet_connection_checker_plus: ^2.5.2
+  fpdart: ^1.1.1
+  flutter_bloc: ^8.1.6
+  intl: ^0.19.0
+  equatable: ^2.0.7
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^4.0.0
 flutter:
+  generate: true
   uses-material-design: true
 
   assets:

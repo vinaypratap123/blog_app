@@ -1,0 +1,22 @@
+{
+  "@@locale": "en",
+  "select_language":"Select language",
+  "english":"English",
+  "hindi":"Hindi",
+  "login": "Login",
+  "sign_up": "Signup",
+  "blog_app": "Blog App",
+  "email": "Email",
+  "password": "Password",
+  "full_name": "Full Name",
+  "post": "Post",
+  "already_have_account": "Already have an account? ",
+  "do_not_have_account": "Don't have an account? ",
+  "oops_something_went_wrong": "Oops something went wrong!",
+  "select_theme": "Select Theme",
+  "light_theme": "Light Theme",
+  "dark_theme": "Dark Theme",
+  "are_you_sure_you_want_to_logout": "Are you sure you want to logout?",
+  "cancel": "Cancel",
+  "logout": "Logout"
+}

@@ -5,7 +5,9 @@ void customErrorSnackbar(BuildContext context, String message) {
     ..hideCurrentSnackBar()
     ..showSnackBar(
       SnackBar(
-        content: Text(message),
+        content: Text(
+          message,
+        ),
       ),
     );
 }
