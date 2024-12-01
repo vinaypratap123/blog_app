@@ -4,6 +4,7 @@ import 'package:blog_app/core/utils/validators.dart';
 import 'package:blog_app/core/widgets/buttons/custom_button.dart';
 import 'package:blog_app/core/widgets/common/custom_bottom_sheet.dart';
 import 'package:blog_app/core/widgets/common/custom_sizedbox.dart';
+import 'package:blog_app/core/widgets/error/custom_error_snackbar.dart';
 import 'package:blog_app/core/widgets/text_fields/custom_text_field.dart';
 import 'package:blog_app/feature/profile/widgets/logout_bottom_sheet.dart';
 import 'package:blog_app/l10n/widgets/language_selection_bottom_sheet.dart';
@@ -53,10 +54,10 @@ class _LoginScreenState extends State<LoginScreen> {
           ///check for internet  button
           IconButton(
             onPressed: () async {
-              //if(await networkInfo.isConnected)
+              customErrorSnackbar(context, 'No internet connection');
             },
             icon: const Icon(
-              Icons.person,
+              Icons.person_outlined,
             ),
           ),
 
@@ -69,7 +70,7 @@ class _LoginScreenState extends State<LoginScreen> {
               );
             },
             icon: const Icon(
-              Icons.dark_mode,
+              Icons.dark_mode_outlined,
             ),
           ),
 
@@ -82,7 +83,7 @@ class _LoginScreenState extends State<LoginScreen> {
               );
             },
             icon: const Icon(
-              Icons.language,
+              Icons.language_outlined,
             ),
           ),
 
@@ -95,7 +96,7 @@ class _LoginScreenState extends State<LoginScreen> {
               );
             },
             icon: const Icon(
-              Icons.logout,
+              Icons.logout_outlined,
             ),
           ),
         ],
@@ -159,7 +160,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   children: [
                     Text(
                       AppLocalizations.of(context)!.do_not_have_account,
-                      style: Theme.of(context).textTheme.titleSmall,
+                      style: Theme.of(context).textTheme.bodyMedium,
                     ),
                     InkWell(
                       onTap: () {
@@ -169,7 +170,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         AppLocalizations.of(context)!.sign_up,
                         style: Theme.of(context)
                             .textTheme
-                            .titleSmall!
+                            .bodyMedium!
                             .copyWith(color: ColorConstants.blueColor),
                       ),
                     ),

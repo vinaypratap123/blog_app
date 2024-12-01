@@ -63,6 +63,7 @@ class LanguageSelectionBottomSheetState
             children: [
               Text(
                 AppLocalizations.of(context)!.select_language,
+                style: Theme.of(context).textTheme.titleMedium,
               ),
               InkWell(
                 onTap: () {
@@ -75,28 +76,46 @@ class LanguageSelectionBottomSheetState
         ),
         const Divider(),
         ListTile(
-          title: Text(AppLocalizations.of(context)!.english),
+          title: Text(
+            AppLocalizations.of(context)!.english,
+            style: Theme.of(context).textTheme.bodyMedium,
+          ),
           leading: Radio<String>(
             value: 'en',
             groupValue: _selectedLanguage,
             onChanged: (value) {
+              setState(() {
+                _selectedLanguage = value!;
+              });
               if (value != null) _onLanguageSelected(value);
             },
           ),
           onTap: () {
+            setState(() {
+              _selectedLanguage = 'en';
+            });
             _onLanguageSelected('en');
           },
         ),
         ListTile(
-          title: Text(AppLocalizations.of(context)!.hindi),
+          title: Text(
+            AppLocalizations.of(context)!.hindi,
+            style: Theme.of(context).textTheme.bodyMedium,
+          ),
           leading: Radio<String>(
             value: 'hi',
             groupValue: _selectedLanguage,
             onChanged: (value) {
+              setState(() {
+                _selectedLanguage = value!;
+              });
               if (value != null) _onLanguageSelected(value);
             },
           ),
           onTap: () {
+            setState(() {
+              _selectedLanguage = 'hi';
+            });
             _onLanguageSelected('hi');
           },
         ),

@@ -2,7 +2,7 @@ import 'package:blog_app/core/theme/color_constants.dart';
 import 'package:flutter/material.dart';
 
 class AppTheme {
-  ///  input border theme
+  ///.....  text input border theme
   static _border([Color color = ColorConstants.borderColor]) {
     return OutlineInputBorder(
       borderSide: BorderSide(
@@ -13,13 +13,13 @@ class AppTheme {
     );
   }
 
-  ///.... Dark Mode Theme
+  ///.............. dark mode theme ..............
   static final darkThemeMode = ThemeData.dark().copyWith(
     brightness: Brightness.dark,
     scaffoldBackgroundColor: ColorConstants.backgroundDark,
     primaryColor: ColorConstants.primaryColor,
 
-    ///app bar theme
+    ///..... app bar theme
     appBarTheme: const AppBarTheme(
       backgroundColor: ColorConstants.blackColor,
       centerTitle: true,
@@ -29,18 +29,18 @@ class AppTheme {
       ),
     ),
 
-    ///cursor Color theme
+    ///..... cursor color theme
     textSelectionTheme: const TextSelectionThemeData(
       cursorColor: ColorConstants.greyColor,
     ),
 
-    ///divider theme
+    ///..... divider theme
     dividerTheme: const DividerThemeData(
       color: ColorConstants.greyColor,
       thickness: 2.0,
     ),
 
-    ///input decoration theme
+    ///..... input decoration theme
     inputDecorationTheme: InputDecorationTheme(
       enabledBorder: _border(),
       focusedBorder: _border(),
@@ -62,7 +62,23 @@ class AppTheme {
       ),
     ),
 
-    ///bottom sheet theme
+    ///..... snackbar theme
+    snackBarTheme: SnackBarThemeData(
+      backgroundColor: ColorConstants.greyColor,
+      actionTextColor: ColorConstants.primaryColor,
+      behavior: SnackBarBehavior.floating,
+      elevation: 6.0,
+      showCloseIcon: true,
+      contentTextStyle: const TextStyle(
+        color: ColorConstants.whiteColor,
+        fontSize: 16.0,
+      ),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(12.0),
+      ),
+    ),
+
+    ///..... bottom sheet theme
     bottomSheetTheme: const BottomSheetThemeData(
       backgroundColor: ColorConstants.blackColor,
       showDragHandle: true,
@@ -75,14 +91,20 @@ class AppTheme {
       ),
     ),
 
-    ///color scheme theme
+    ///..... color scheme theme
     colorScheme: const ColorScheme.dark(
       primary: ColorConstants.primaryColor,
       surface: ColorConstants.blackColor,
       onSurface: ColorConstants.whiteColor,
     ),
 
-    ///elevated button theme
+    ///..... icon theme
+    iconTheme: const IconThemeData(
+      color: ColorConstants.whiteColor,
+      size: 24.0,
+    ),
+
+    ///.....elevated button theme
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
         disabledBackgroundColor: ColorConstants.primaryColor.withOpacity(0.3),
@@ -95,36 +117,36 @@ class AppTheme {
       ),
     ),
 
-    ///text theme
+    ///.....text theme
     textTheme: const TextTheme(
       displayLarge: TextStyle(
         fontSize: 32,
-        fontWeight: FontWeight.normal,
+        fontWeight: FontWeight.w900,
         color: ColorConstants.whiteColor,
       ),
       displayMedium: TextStyle(
         fontSize: 28,
-        fontWeight: FontWeight.normal,
+        fontWeight: FontWeight.bold,
         color: ColorConstants.whiteColor,
       ),
       displaySmall: TextStyle(
-        fontSize: 26,
-        fontWeight: FontWeight.normal,
+        fontSize: 24,
+        fontWeight: FontWeight.w500,
         color: ColorConstants.whiteColor,
       ),
       headlineLarge: TextStyle(
-        fontSize: 32,
+        fontSize: 22,
         fontWeight: FontWeight.bold,
         color: ColorConstants.whiteColor,
       ),
       headlineMedium: TextStyle(
-        fontSize: 28,
-        fontWeight: FontWeight.bold,
+        fontSize: 20,
+        fontWeight: FontWeight.w500,
         color: ColorConstants.whiteColor,
       ),
       headlineSmall: TextStyle(
-        fontSize: 26,
-        fontWeight: FontWeight.bold,
+        fontSize: 18,
+        fontWeight: FontWeight.normal,
         color: ColorConstants.whiteColor,
       ),
       titleLarge: TextStyle(
@@ -139,34 +161,34 @@ class AppTheme {
       ),
       titleSmall: TextStyle(
         fontSize: 16,
-        fontWeight: FontWeight.bold,
+        fontWeight: FontWeight.w500,
         color: ColorConstants.whiteColor,
       ),
       bodyLarge: TextStyle(
-        fontSize: 22,
-        fontWeight: FontWeight.normal,
-        color: ColorConstants.whiteColor,
-      ),
-      bodyMedium: TextStyle(
         fontSize: 18,
         fontWeight: FontWeight.normal,
         color: ColorConstants.whiteColor,
       ),
-      bodySmall: TextStyle(
+      bodyMedium: TextStyle(
         fontSize: 16,
+        fontWeight: FontWeight.normal,
+        color: ColorConstants.whiteColor,
+      ),
+      bodySmall: TextStyle(
+        fontSize: 14,
         fontWeight: FontWeight.normal,
         color: ColorConstants.whiteColor,
       ),
     ),
   );
 
-  ///.... Light Mode Theme
+  ///.............. light mode theme ..........................
   static final lightThemeMode = ThemeData.dark().copyWith(
     brightness: Brightness.light,
     scaffoldBackgroundColor: ColorConstants.backgroundLight,
     primaryColor: ColorConstants.primaryColor,
 
-    ///appbar theme
+    ///..... appbar theme
     appBarTheme: const AppBarTheme(
       backgroundColor: ColorConstants.whiteColor,
       centerTitle: true,
@@ -176,12 +198,18 @@ class AppTheme {
       ),
     ),
 
-    ///cursor Color theme
+    ///..... cursor Color theme
     textSelectionTheme: const TextSelectionThemeData(
       cursorColor: ColorConstants.greyColor,
     ),
 
-    ///input decoration theme
+    ///.....divider theme
+    dividerTheme: const DividerThemeData(
+      color: ColorConstants.greyColor,
+      thickness: 2.0,
+    ),
+
+    ///.....input decoration theme
     inputDecorationTheme: InputDecorationTheme(
       enabledBorder: _border(),
       focusedBorder: _border(),
@@ -203,7 +231,23 @@ class AppTheme {
       ),
     ),
 
-    ///bottom sheet theme
+    ///..... snackbar theme
+    snackBarTheme: SnackBarThemeData(
+      backgroundColor: ColorConstants.greyColor,
+      actionTextColor: ColorConstants.primaryColor,
+      behavior: SnackBarBehavior.floating,
+      elevation: 6.0,
+      showCloseIcon: true,
+      contentTextStyle: const TextStyle(
+        color: ColorConstants.whiteColor,
+        fontSize: 16.0,
+      ),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(12.0),
+      ),
+    ),
+
+    ///.....bottom sheet theme
     bottomSheetTheme: const BottomSheetThemeData(
       backgroundColor: ColorConstants.whiteColor,
       showDragHandle: true,
@@ -216,25 +260,20 @@ class AppTheme {
       ),
     ),
 
-    ///color scheme theme
+    ///..... color scheme theme
     colorScheme: const ColorScheme.dark(
       primary: ColorConstants.primaryColor,
       surface: ColorConstants.whiteColor,
       onSurface: ColorConstants.blackColor,
     ),
 
+    ///..... icon theme
     iconTheme: const IconThemeData(
       color: ColorConstants.blackColor,
       size: 24.0,
     ),
 
-    ///divider theme
-    dividerTheme: const DividerThemeData(
-      color: ColorConstants.greyColor,
-      thickness: 2.0,
-    ),
-
-    ///elevated button theme
+    ///.....elevated button theme
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
         disabledBackgroundColor: ColorConstants.primaryColor.withOpacity(0.3),
@@ -247,36 +286,36 @@ class AppTheme {
       ),
     ),
 
-    ///text theme
+    ///.....text theme
     textTheme: const TextTheme(
       displayLarge: TextStyle(
         fontSize: 32,
-        fontWeight: FontWeight.normal,
+        fontWeight: FontWeight.w900,
         color: ColorConstants.blackColor,
       ),
       displayMedium: TextStyle(
         fontSize: 28,
-        fontWeight: FontWeight.normal,
+        fontWeight: FontWeight.bold,
         color: ColorConstants.blackColor,
       ),
       displaySmall: TextStyle(
-        fontSize: 26,
-        fontWeight: FontWeight.normal,
+        fontSize: 24,
+        fontWeight: FontWeight.w500,
         color: ColorConstants.blackColor,
       ),
       headlineLarge: TextStyle(
-        fontSize: 32,
+        fontSize: 22,
         fontWeight: FontWeight.bold,
         color: ColorConstants.blackColor,
       ),
       headlineMedium: TextStyle(
-        fontSize: 28,
-        fontWeight: FontWeight.bold,
+        fontSize: 20,
+        fontWeight: FontWeight.w500,
         color: ColorConstants.blackColor,
       ),
       headlineSmall: TextStyle(
-        fontSize: 26,
-        fontWeight: FontWeight.bold,
+        fontSize: 18,
+        fontWeight: FontWeight.normal,
         color: ColorConstants.blackColor,
       ),
       titleLarge: TextStyle(
@@ -291,21 +330,21 @@ class AppTheme {
       ),
       titleSmall: TextStyle(
         fontSize: 16,
-        fontWeight: FontWeight.bold,
+        fontWeight: FontWeight.w500,
         color: ColorConstants.blackColor,
       ),
       bodyLarge: TextStyle(
-        fontSize: 22,
-        fontWeight: FontWeight.normal,
-        color: ColorConstants.blackColor,
-      ),
-      bodyMedium: TextStyle(
         fontSize: 18,
         fontWeight: FontWeight.normal,
         color: ColorConstants.blackColor,
       ),
-      bodySmall: TextStyle(
+      bodyMedium: TextStyle(
         fontSize: 16,
+        fontWeight: FontWeight.normal,
+        color: ColorConstants.blackColor,
+      ),
+      bodySmall: TextStyle(
+        fontSize: 14,
         fontWeight: FontWeight.normal,
         color: ColorConstants.blackColor,
       ),

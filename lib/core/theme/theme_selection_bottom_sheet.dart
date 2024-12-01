@@ -46,7 +46,7 @@ class ThemeSelectionBottomSheet extends StatelessWidget {
           ),
           title: Text(
             AppLocalizations.of(context)!.light_theme,
-            style: Theme.of(context).textTheme.bodySmall,
+            style: Theme.of(context).textTheme.bodyMedium,
           ),
           onTap: () {
             GoRouter.of(context).pop();
@@ -60,7 +60,7 @@ class ThemeSelectionBottomSheet extends StatelessWidget {
           ),
           title: Text(
             AppLocalizations.of(context)!.dark_theme,
-            style: Theme.of(context).textTheme.bodySmall,
+            style: Theme.of(context).textTheme.bodyMedium,
           ),
           onTap: () {
             GoRouter.of(context).pop();

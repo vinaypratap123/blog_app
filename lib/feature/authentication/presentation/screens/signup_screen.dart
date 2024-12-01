@@ -140,7 +140,7 @@ class _SignupScreenState extends State<SignupScreen> {
                       children: [
                         Text(
                           AppLocalizations.of(context)!.already_have_account,
-                          style: Theme.of(context).textTheme.titleSmall,
+                          style: Theme.of(context).textTheme.bodyMedium,
                         ),
                         InkWell(
                           onTap: () {
@@ -150,7 +150,7 @@ class _SignupScreenState extends State<SignupScreen> {
                             AppLocalizations.of(context)!.login,
                             style: Theme.of(context)
                                 .textTheme
-                                .titleSmall!
+                                .bodyMedium!
                                 .copyWith(color: ColorConstants.blueColor),
                           ),
                         ),

@@ -44,7 +44,7 @@ class CustomButton extends StatelessWidget {
         btnName,
         style: width == null
             ? Theme.of(context).textTheme.titleMedium
-            : Theme.of(context).textTheme.bodySmall,
+            : Theme.of(context).textTheme.bodyMedium,
       ),
     );
   }
