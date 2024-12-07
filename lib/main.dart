@@ -1,7 +1,6 @@
 import 'package:blog_app/core/constants/string_constants.dart';
 import 'package:blog_app/core/route/route.dart';
 import 'package:blog_app/core/theme/theme_cubit.dart';
-import 'package:blog_app/core/utils/shared_preferences.dart';
 import 'package:blog_app/dependency_injection.dart';
 import 'package:blog_app/feature/authentication/presentation/bloc/auth_bloc.dart';
 import 'package:blog_app/l10n/bloc/app_localization_bloc.dart';
@@ -11,7 +10,8 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await SharedPreferencesHandler.init();
+
+  ///initialization of dependency injection
   await init();
 
   runApp(

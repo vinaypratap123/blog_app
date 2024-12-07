@@ -20,12 +20,20 @@ class AuthRepositoryImpl implements AuthRepository {
   Future<Either<Failure, UserEntity>> loginWithEmailPassword({
     required String email,
     required String password,
-  }) {
-    _authRemoteDataSource.loginWithEmailPassword(
-      email: email,
-      password: password,
-    );
-    throw UnimplementedError();
+  }) async {
+    if (await networkInfo.isConnected) {
+      try {
+        final user = await _authRemoteDataSource.loginWithEmailPassword(
+          email: email,
+          password: password,
+        );
+        return right(user);
+      } on ServerException catch (error) {
+        return left(Failure(error.message));
+      }
+    } else {
+      return left(Failure(StringConstants.noInternetConnection));
+    }
   }
 
   ///.... sign up with email and password

@@ -52,22 +52,18 @@ class _SignupScreenState extends State<SignupScreen> {
         child: Padding(
           padding: const EdgeInsets.all(10.0),
           child: BlocConsumer<AuthBloc, AuthState>(
-            listener: (context, state) {
+            listener: (context, authsState) {
               /// auth error state
-              if (state is AuthFailure) {
-                customErrorSnackbar(context, state.message);
+              if (authsState is AuthFailure) {
+                customErrorSnackbar(context, authsState.message);
               }
 
               ///auth success state
-              if (state is AuthSuccess) {
+              if (authsState is AuthSuccess) {
                 context.go('/homeScreen');
               }
             },
-            builder: (context, state) {
-              ///auth loading state
-              if (state is AuthLoading) {
-                return customCircularProgressIndicator();
-              }
+            builder: (context, authsState) {
               return Form(
                 key: _formKey,
                 child: Column(
@@ -113,24 +109,31 @@ class _SignupScreenState extends State<SignupScreen> {
                       height: 30,
                     ),
 
+                    ///auth loading state
+                    if (authsState is AuthLoading)
+                      customCircularProgressIndicator()
+
                     ///.... signup button
-                    CustomButton(
-                      btnName: AppLocalizations.of(context)!.sign_up,
-                      onPressed: () {
-                        if (_formKey.currentState?.validate() ?? false) {
-                          debugPrint('signup Form is valid');
-                          context.read<AuthBloc>().add(
-                                AuthSignUpEvent(
-                                  fullName: _nameController.text.trim(),
-                                  email: _emailController.text.trim(),
-                                  password: _passwordController.text.trim(),
-                                ),
-                              );
-                        } else {
-                          debugPrint('signup Form is not valid');
-                        }
-                      },
-                    ),
+                    else
+                      CustomButton(
+                        btnName: AppLocalizations.of(context)!.sign_up,
+                        onPressed: () {
+                          if (_formKey.currentState?.validate() ?? false) {
+                            debugPrint('signup Form is valid');
+                            context.read<AuthBloc>().add(
+                                  AuthSignUpEvent(
+                                    fullName: _nameController.text.trim(),
+                                    email: _emailController.text
+                                        .trim()
+                                        .toLowerCase(),
+                                    password: _passwordController.text.trim(),
+                                  ),
+                                );
+                          } else {
+                            debugPrint('signup Form is not valid');
+                          }
+                        },
+                      ),
                     const CustomSizedBox(
                       height: 30,
                     ),

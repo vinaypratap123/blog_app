@@ -5,10 +5,13 @@ import 'package:blog_app/core/widgets/buttons/custom_button.dart';
 import 'package:blog_app/core/widgets/common/custom_bottom_sheet.dart';
 import 'package:blog_app/core/widgets/common/custom_sizedbox.dart';
 import 'package:blog_app/core/widgets/error/custom_error_snackbar.dart';
+import 'package:blog_app/core/widgets/loader/circular_progress_indicator.dart';
 import 'package:blog_app/core/widgets/text_fields/custom_text_field.dart';
+import 'package:blog_app/feature/authentication/presentation/bloc/auth_bloc.dart';
 import 'package:blog_app/feature/profile/widgets/logout_bottom_sheet.dart';
 import 'package:blog_app/l10n/widgets/language_selection_bottom_sheet.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
@@ -51,16 +54,6 @@ class _LoginScreenState extends State<LoginScreen> {
     return Scaffold(
       appBar: AppBar(
         actions: [
-          ///check for internet  button
-          IconButton(
-            onPressed: () async {
-              customErrorSnackbar(context, 'No internet connection');
-            },
-            icon: const Icon(
-              Icons.person_outlined,
-            ),
-          ),
-
           ///theme change icon button
           IconButton(
             onPressed: () {
@@ -104,80 +97,108 @@ class _LoginScreenState extends State<LoginScreen> {
       body: Center(
         child: Padding(
           padding: const EdgeInsets.all(10.0),
-          child: Form(
-            key: _formKey,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Text(
-                  AppLocalizations.of(context)!.login,
-                  style: Theme.of(context).textTheme.displayLarge,
-                ),
-                const CustomSizedBox(
-                  height: 15,
-                ),
+          child: BlocConsumer<AuthBloc, AuthState>(
+            listener: (context, authsState) {
+              /// auth error state
+              if (authsState is AuthFailure) {
+                customErrorSnackbar(context, authsState.message);
+              }
 
-                ///.... Email text field
-                CustomTextField(
-                  controller: _emailController,
-                  hintText: AppLocalizations.of(context)!.email,
-                  validator: customEmailValidator,
-                ),
-                const CustomSizedBox(
-                  height: 15,
-                ),
-
-                ///.... Password text field
-                CustomTextField(
-                  controller: _passwordController,
-                  hintText: AppLocalizations.of(context)!.password,
-                  isPasswordField: true,
-                  validator: customPasswordValidator,
-                ),
-                const CustomSizedBox(
-                  height: 30,
-                ),
-
-                ///.... login button
-                CustomButton(
-                  btnName: AppLocalizations.of(context)!.login,
-                  onPressed: () {
-                    if (_formKey.currentState?.validate() ?? false) {
-                      debugPrint('login Form is valid');
-                    } else {
-                      debugPrint('login Form is not valid');
-                    }
-                  },
-                ),
-
-                const CustomSizedBox(
-                  height: 30,
-                ),
-                Row(
+              ///auth success state
+              if (authsState is AuthSuccess) {
+                context.go('/homeScreen');
+              }
+            },
+            builder: (context, authsState) {
+              return Form(
+                key: _formKey,
+                child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Text(
-                      AppLocalizations.of(context)!.do_not_have_account,
-                      style: Theme.of(context).textTheme.bodyMedium,
+                      AppLocalizations.of(context)!.login,
+                      style: Theme.of(context).textTheme.displayLarge,
                     ),
-                    InkWell(
-                      onTap: () {
-                        context.go('/signupScreen');
-                      },
-                      child: Text(
-                        AppLocalizations.of(context)!.sign_up,
-                        style: Theme.of(context)
-                            .textTheme
-                            .bodyMedium!
-                            .copyWith(color: ColorConstants.blueColor),
+                    const CustomSizedBox(
+                      height: 15,
+                    ),
+
+                    ///.... Email text field
+                    CustomTextField(
+                      controller: _emailController,
+                      hintText: AppLocalizations.of(context)!.email,
+                      validator: customEmailValidator,
+                    ),
+                    const CustomSizedBox(
+                      height: 15,
+                    ),
+
+                    ///.... Password text field
+                    CustomTextField(
+                      controller: _passwordController,
+                      hintText: AppLocalizations.of(context)!.password,
+                      isPasswordField: true,
+                      validator: customPasswordValidator,
+                    ),
+                    const CustomSizedBox(
+                      height: 30,
+                    ),
+
+                    ///auth loading state
+                    if (authsState is AuthLoading)
+                      customCircularProgressIndicator()
+
+                    ///.... login button
+                    else
+                      CustomButton(
+                        btnName: AppLocalizations.of(context)!.login,
+                        onPressed: () {
+                          if (_formKey.currentState?.validate() ?? false) {
+                            debugPrint('login Form is valid');
+                            context.read<AuthBloc>().add(
+                                  AuthSignInEvent(
+                                    email: _emailController.text
+                                        .trim()
+                                        .toLowerCase(),
+                                    password: _passwordController.text.trim(),
+                                  ),
+                                );
+                          } else {
+                            debugPrint('login Form is not valid');
+                          }
+                        },
                       ),
+
+                    const CustomSizedBox(
+                      height: 30,
                     ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Text(
+                          AppLocalizations.of(context)!.do_not_have_account,
+                          style: Theme.of(context).textTheme.bodyMedium,
+                        ),
+                        InkWell(
+                          onTap: () {
+                            context.go('/signupScreen');
+                          },
+                          child: Text(
+                            AppLocalizations.of(context)!.sign_up,
+                            style: Theme.of(context)
+                                .textTheme
+                                .bodyMedium!
+                                .copyWith(color: ColorConstants.blueColor),
+                          ),
+                        ),
+                      ],
+                    )
                   ],
-                )
-              ],
-            ),
+                ),
+              );
+            },
           ),
         ),
       ),

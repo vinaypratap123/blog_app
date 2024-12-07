@@ -203,6 +203,11 @@ class AppTheme {
       cursorColor: ColorConstants.greyColor,
     ),
 
+    ///chip theme
+    chipTheme: const ChipThemeData(
+      color: WidgetStatePropertyAll<Color>(ColorConstants.whiteColor),
+    ),
+
     ///.....divider theme
     dividerTheme: const DividerThemeData(
       color: ColorConstants.greyColor,
